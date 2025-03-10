@@ -14,8 +14,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.json({ limit: '50mb' })); // Increase the request body size limit
 app.use(cors({
-    // origin: "http://localhost:3000", // Replace with your client's URL
-    origin: "https://convertmastery.com", // Replace with your client's URL
+    origin: "http://localhost:3000", // Replace with your client's URL
     credentials: true,
   }));
 
@@ -132,8 +131,7 @@ app.post("/api/convert-video", upload.single("video"), async (req, res) => {
         }
       })
       .on("end", () => {
-        const videoUrl = `https://convert-mastery-backend.vercel.app/uploads/converted/${path.basename(outputFile)}`;
-        // const videoUrl = `http://localhost:3000/uploads/converted/${path.basename(outputFile)}`;
+        const videoUrl = `http://localhost:5000/uploads/converted/${path.basename(outputFile)}`;
         res.json({ url: videoUrl });
       })
       .on("error", (err, stdout, stderr) => {
